@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    // old method
+// document.getElementById('owl').onclick=function(){
+//     alert('clicked owl')
+// }
+
+// New method
+// document.getElementById('owl').addEventListener('click', function () {
+//     alert('clicked again to the owl')
+// }, false)
+
+// # Event propagation:
+
+// 1. Bubbling phase: The event travel from the target element back to the root
+document.querySelector('#images').addEventListener('click', function(event){
+console.log("clicked inside the ul")
+}, false)
+
+// document.querySelector('#owl').addEventListener('click', function(event){
+// console.log("click owl")
+// }, false)
+
+// 2. Capturing phase: The event travel from the root to the target element
+// document.querySelector('#images').addEventListener('click', function(event){
+// console.log("clicked inside the ul")
+// }, true)
+
+// document.querySelector('#owl').addEventListener('click', function(event){
+// console.log("click the owl")
+// }, true)
+
+
+// Preventing google link by using 'preventdefault'
+document.getElementById('google').addEventListener('click', function(e){
+   console.log(e.target)
+   e.preventDefault()
+   e.stopPropagation()
+}, false)
+
+
+// let's disappear images when we click on it
+
+let img = document.querySelector('#images')
+img.addEventListener('click', function(evt) {
+    console.log(evt)
+    evt.stopPropagation()
+    evt.preventDefault()
+
+    console.log(evt.target.tagName)
+
+    if (evt.target.tagName === 'IMG') {
+        console.log(evt.target.parentNode);
+
+        let removeIt = evt.target.parentNode
+
+        // first method to remove the element
+        // removeIt.remove()
+
+        // second method to remove the element
+        removeIt.parentNode.removeChild(removeIt)
+    }
+}, true)
+</script>
+</html>

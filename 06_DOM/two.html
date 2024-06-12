@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | Chai aur code<code></code> </title>
+</head>
+<body style="background-color: #212121; color: #ffff;">
+    <div class="parent">
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+    </div>
+</body>
+<script>
+    // 1. Selecting the Parent Element:
+    // This line selects the first element in the document with the class name parent and assigns it to the variable parent. The document.querySelector() method returns the first element within the document that matches the specified selector.
+     const parent = document.querySelector(".parent")
+
+    // 2. Logging the Parent Element:
+    console.log(parent)
+
+    // 3. Accessing and Logging the Children:
+    // This logs the children property of the parent element. The children property is a live HTMLCollection of the child elements of the parent. This collection is automatically updated when the document changes.
+    // console.log(parent.children);
+
+    // 4. 'parent.children[1]' This accesses the second child element within the parent element. 'parent.children[1].innerHTML' The innerHTML property of an element returns the HTML content inside that element.
+    // console.log(parent.children[1].innerHTML);
+
+
+    // for (let i = 0; i < parent.children.length; i++) {
+    //     console.log( parent.children[i].innerHTML);
+        
+    // }
+    parent.children[1].style.color = "orange"
+
+    // Note: with the help of these we can movie from parent to child
+    // console.log(parent.firstElementChild);
+    // console.log(parent.lastElementChild);
+
+    // Note: how to move from child to parent 
+    const dayOne = document.querySelector('.day')
+    // console.log(dayOne);
+    // console.log(dayOne.parentElement);
+
+    // Note: we just not tracking 'Parent' but we can also go to another 'siblings'
+    // console.log(dayOne.nextElementSibling);
+
+    // When you run the script in your HTML file, it will output the child nodes of the element with the class parent to the console. The childNodes property returns a live NodeList of all child nodes of the specified node, including elements, text nodes, and comment nodes.
+    console.log("NODES:", parent.childNodes);
+
+</script>
+</html>

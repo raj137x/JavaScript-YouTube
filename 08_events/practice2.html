@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Chai aur code</h2>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+
+    // # setTimeout and clearInterval
+
+//     function name(){
+//         const myName = "raja sekh"
+//         return myName
+//     }
+
+//    const pause = setTimeout(() => {
+//         console.log(name())
+//     }, 6000);
+
+//     const mySister = function () {
+//         console.log("Anjali")
+//     }
+//     const stop = setTimeout(mySister, 3000);
+
+//     document.querySelector('#stop').addEventListener('click', function (){
+//         clearTimeout(stop)
+//         clearTimeout(pause)
+//         console.log('STOPPED')
+//     })
+
+        // const changeText = function () {document.querySelector('h2').innerHTML = "Chai aur javascript"}
+        // setTimeout(changeText, 4000);
+
+
+    // # setInterval and clearInterval
+
+    const randomNumber = function (str) {
+        console.log(str, Math.floor(Math.random() * 1000 + 1))
+        
+    }
+
+    let intervalId;
+
+    document.getElementById('start').addEventListener('click', function () {
+        intervalId = setInterval(randomNumber, 1000, "hello");
+    });
+
+    document.getElementById('stop').addEventListener('click', function () {
+        clearInterval(intervalId);
+    });
+
+</script>
+</html>

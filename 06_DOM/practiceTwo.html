@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Practice</title>
+</head>
+<body style="background-color: #212121; color: #ffff;">
+    <div class="parent">
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+    </div>
+</body>
+<script>
+    // Selecting the parent element:
+    const parent = document.querySelector('.parent')
+
+    // Logging the parent element:
+    console.log(parent);
+
+    //Accessing and Logging the Childrens
+    console.log(parent.children);
+
+    // Accessing the second child element and also accessing the content inside it
+    // console.log(parent.children[1].innerHTML);
+
+
+    // now we iterate the child inside the parent element
+    // for (let i = 0; i < parent.children.length; i++) {
+    //     const element = parent.children[i].innerHTML;
+    //     console.log(element);
+        
+    // }
+    parent.children[1].style.color = 'orange'
+
+    // # let's movie from parent to child element 
+
+    // * 'children' property: This property returns an HTMLCollection of only the child element nodes.
+    // console.log(parent.children);
+
+    // * 'firstChild' property: This property returns the first child node of the parent element, which can be any type of node.
+    console.log(parent.firstChild); // output: #text. The first child node of the parent element is actually a text node containing the whitespace (line break) before the first <div class="day"> element.
+
+    // * 'lastChild' property: This property returns the last child node of the parent element.
+    console.log(parent.lastChild);  // output: #text. The last child node of the parent element is actually a text node containing the whitespace (line break) after the last <div class="day"> element.
+    
+    // * 'firstElementChild' property: This property returns the first child element of the parent element.
+    console.log(parent.firstElementChild); // Output: <div class = "day">Monday</div>
+
+    // * 'lastElementChild' property: This property returns the last child element of the parent element.
+    console.log(parent.lastElementChild); // Output: <div class="day">Thursday</div>
+
+    // * Using querySelector method
+    console.log(parent.querySelector('.day')); // Output: <div class="day">Monday</div>
+
+    console.log(parent.querySelector('.day:nth-child(3)')) // Output: Wednesday
+
+
+
+    // # Let's move from child element to parent element:
+
+    const dayOne = document.querySelector('.day')
+    console.log(dayOne)
+      // * Using parentNode
+      console.log(dayOne.parentNode)
+
+      // * Using parentElements
+      console.log(dayOne.parentElement);
+
+      // * Using closest method
+      console.log(dayOne.closest('.parent'));
+
+
+      // #  hold a specific child element of the parent element 
+
+      // * Using querySelector with a more specific selector:
+    //   const currentElement = document.querySelector('.parent .day:nth-child(2)')
+
+      // * Using querySelectorAll with an index:
+      const currentElement = document.querySelectorAll('.parent .day')[2] // Select the third child with class 'day' (Wednesday)
+    //   console.log(currentElement)
+
+    // # navigate to sibling elements in the DOM
+    
+    // * 'nextSibling':
+    console.log(currentElement.nextSibling) // Output: #text, Returns the next sibling node (including text nodes, comments, etc.).
+
+    // * 'previousSibling':
+    console.log(currentElement.previousSibling) // Output: #text, Returns the next sibling node (including text nodes, comments, etc.).
+
+    // * 'nextElementSibling':
+    console.log(currentElement.nextElementSibling); // Output: <div class="day">Wednesday</div>
+
+    // * 'previousElementSibling':
+    console.log(currentElement.previousElementSibling); // Output: <div class="day">Monday</div>
+
+    // # The parent.childNodes property returns a live NodeList of all child nodes of the specified parent node, including elements, 
+    //   text nodes, and comment nodes. This NodeList is an array-like object that can be accessed by index.
+    console.log(parent.childNodes)
+
+    // * Accessing specific element in 'childNodes' using 'Index no.'
+    console.log(parent.childNodes[1])
+
+</script>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | Chai aur code</title>
+</head>
+<body style="background-color: #212121; color: #ffff;">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+<script>
+    // Here we learn how to add more element in a parent uing 'function'
+
+    // Note: The number of time this method is running. The tree has to traverse so many time.
+    function addLanguage (langName){
+        const li = document.createElement('li')
+        li.innerHTML = `${langName}`
+        document.querySelector('.language').appendChild(li)
+    }
+    addLanguage('Python')
+    addLanguage('Typescript')
+
+
+    // Optimize way of this function. Always prefer in 'Big Projects'
+    // Note: Here is no need to traverse the entire tree.
+    function addOptiLanguage (langName){
+        const li = document.createElement('li')
+        li.appendChild(document.createTextNode(langName))
+        document.querySelector('.language').appendChild(li)
+    }
+    addOptiLanguage('golang')
+
+
+    // # Edit (first way)
+
+    const secondLang = document.querySelector('li:nth-child(2)')
+    console.log(secondLang);
+
+    // secondLang.innerHTML = "Mojo" 
+
+    const newLi = document.createElement('li')
+    newLi.textContent = 'Mojo'
+    secondLang.replaceWith(newLi)
+
+    // # Edit (second way)
+
+    const firstLang = document.querySelector('li:first-child')
+    firstLang.outerHTML = "<li>Java</li>"
+
+
+    // # Remove
+
+    // let's remove 'golang'
+    const lastLang = document.querySelector('li:last-child')
+    lastLang.remove()
+
+</script>
+</html>

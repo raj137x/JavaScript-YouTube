@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    // # what to study in 'Events'
+    // 1. type, timestamp, dfaultprvented,
+    // 2. target, toElement, srcElement, currentTarget, 
+    // 3. clientX, clienty, screenX, screenY,
+    // 4. altKey, ctrlKey, shiftKey, keyCode
+
+    // # Event Propagation:
+
+
+
+    // # Old Approach
+    // document.getElementById('owl').onclick = function(){
+    //     alert('owl clicked')
+    // }
+
+// # The 'alert' function in JavaScript is a built-in function that displays a modal dialog box with a specified message and an OK button. 
+// This function is commonly used for simple notifications or debugging purposes.
+
+    // # Best new Approach:
+    // document.getElementById('owl').addEventListener('click', function(){
+    //     alert('owl clicked again')
+    // }, false)
+
+ 
+    // # In JavaScript, addEventListener is a method used to attach an event handler to a specified element. This method is preferred over older 
+    // techniques like onclick or onmouseover because it allows for multiple event listeners to be added to a single element for the same event, and 
+    // it provides more flexibility in managing event propagation and removal.
+
+
+    // #  Event Propagation
+    // Events can propagate through the DOM in two phases:
+
+    // 1. Bubbling Phase: The event travels from the target element back to the root.
+
+    document.getElementById('images').addEventListener('click', function(event){
+        console.log('clicked inside the ul')
+    }, false)
+
+    // document.getElementById('owl').addEventListener('click', function(event){
+    //     console.log('owl clicked')
+    // // # the `stopPropagation` method ensure that our event not 'bubbling' (means it stop the target element go back to the root.)
+    //     event.stopPropagation()
+    // }, false)
+
+    // 2. Capturing Phase: The event travels from the root to the target element.
+
+    // document.getElementById('images').addEventListener('click', function(event){
+    //     console.log('clicked inside the ul')
+    // }, true)
+
+    // document.getElementById('owl').addEventListener('click', function(event){
+    //     console.log('owl clicked')
+    // }, true)
+    
+// # let's prevent the google link to open by using 'preventDefault()' method
+    document.getElementById('google').addEventListener('click', function (e) {
+        console.log("google clicked");
+        e.preventDefault();
+        e.stopPropagation()
+    }, false)
+
+
+   // Let's lookout, when we clcik on images which present in 'ul', they will disappear after clicking
+
+   const img = document.querySelector('#images')
+   console.log(img)
+    img.addEventListener('click', function(e) {
+        console.log(e)
+        // With the help of "parentNode" property we can select the parent element of the targeted element 
+        // console.log(e.target.parentNode);
+        
+        // `tagName` property is used to get the name of the tag of an HTML element. When you handle events, you might want to know which element triggered the event, and tagName can be useful in such scenarios.
+        console.log(e.target.tagName);
+
+        if (e.target.tagName === 'IMG') {
+            console.log(e.target.id);
+            // # How to remove the images when we click on image
+        // First Approach:
+        let removeIt = e.target.parentNode
+        removeIt.remove()
+
+        // Second Approach:
+        // removeIt.parentNode.removeChild(removeIt)
+        }
+
+        
+    }, false)
+
+</script>
+</html>
